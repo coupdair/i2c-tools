@@ -314,7 +314,7 @@ found:
 
 done:
 	return adapters;
-}
+}//gather_i2c_busses
 
 static int lookup_i2c_bus_by_name(const char *bus_name)
 {

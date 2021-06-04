@@ -107,7 +107,7 @@ static int scan_i2c_bus(int file, int mode, int first, int last)
 	}
 
 	return 0;
-}
+}//scan_i2c_bus
 
 struct func
 {
@@ -181,7 +181,7 @@ static void print_i2c_busses(void)
 	}
 
 	free_adapters(adapters);
-}
+}//print_i2c_busses
 
 int main(int argc, char *argv[])
 {

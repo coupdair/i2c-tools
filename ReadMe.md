@@ -67,15 +67,16 @@ for i in 18 19 1a 1b 1c 1d; do ./tools/i2cget -y 1 0x$i 0x05 w; done
 ~~~
 
 ~~~ { .bash }
-ub=0xc1
+#HighRes.Temp. (MCP9808)
+w=`./tools/i2cget -y 1 0x18 0x05 w`
+ub=0x`echo $w | tail -c 3`
+lb=`echo $w | head -c 4`
 #remove flag bits
 ubc=`~/bin/bitset -s 8 -x $ub --and -X 0x1F | tail -n 1`
 echo 'UpperByte: '$ub' -> '$ubc
-UpperByte: 0xc1 -> 0x1
+t=`units "($ubc*16)+($lb/16)" " " -t`
+echo $t" °C"
 
-units
-((0x1*16)+(0x7e/16))
-
-23.875
+24.375 °C
 ~~~
 

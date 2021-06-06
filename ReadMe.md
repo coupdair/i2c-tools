@@ -55,3 +55,27 @@ i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
 ./tools/i2cget -y 1 0x18 0x05 w
 0x56c1
 ~~~
+
+~~~ { .bash }
+for i in 18 19 1a 1b 1c 1d; do ./tools/i2cget -y 1 0x$i 0x05 w; done
+0x78c1
+0x77c1
+0x7bc1
+0x7ec1
+0x81c1
+0x7ec1
+~~~
+
+~~~ { .bash }
+ub=0xc1
+#remove flag bits
+ubc=`~/bin/bitset -s 8 -x $ub --and -X 0x1F | tail -n 1`
+echo 'UpperByte: '$ub' -> '$ubc
+UpperByte: 0xc1 -> 0x1
+
+units
+((0x1*16)+(0x7e/16))
+
+23.875
+~~~
+
